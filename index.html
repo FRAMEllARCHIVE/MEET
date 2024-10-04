@@ -132,10 +132,19 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        canvas.addEventListener('mousedown', startDrawing);
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', stopDrawing);
-        canvas.addEventListener('mouseout', stopDrawing);
+document.addEventListener('mousedown', (e) => {
+    if (e.target === canvas) {
+        startDrawing(e);
+    }
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (isDrawing && e.target === canvas) {
+        draw(e);
+    }
+});
+
+document.addEventListener('mouseup', stopDrawing);
 
 
 function startDrawing(e) {
