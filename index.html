@@ -297,6 +297,25 @@
                 audio.play();
             });
         }
+
+const copyPeerIdBtn = document.getElementById('copy-peer-id-btn');
+
+function copyPeerIdToClipboard() {
+    const peerId = peer.id;
+    const urlToCopy = `https://framellarchive.github.io/MEET/#${peerId}`;
+
+    navigator.clipboard.writeText(urlToCopy).then(() => {
+        console.log('Peer ID copied to clipboard:', urlToCopy);
+
+        addChatMessage('System', 'LINK copied to clipboard.');
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
+copyPeerIdBtn.addEventListener('click', copyPeerIdToClipboard);
+
+
     </script>
 </body>
 </html>
