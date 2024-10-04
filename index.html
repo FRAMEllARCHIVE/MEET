@@ -202,18 +202,30 @@ function sendMessage() {
     }
 }
 
-// Connect to peer
-connectBtn.addEventListener('click', () => {
-    const peerId = peerIdInput.value.trim();
-    if (peerId) {
-        const conn = peer.connect(peerId);
-        connections.push(conn);
-        setupConnection(conn);
-        peerIdInput.value = '';
-    }
-});
 
-// VoIP functions
+// Hash handler function
+function hashHandler() {
+    const hash = window.location.hash.substring(1); // Remove the '#' character
+    if (hash) {
+        peerIdInput.value = hash; // Set the peer ID input to the hash value
+        connectToPeer(hash); // Call the function to connect to the peer
+    }
+}
+
+// Connect to a specific peer
+function connectToPeer(peerId) {
+    const conn = peer.connect(peerId);
+    connections.push(conn);
+    setupConnection(conn);
+}
+
+// Call hashHandler on page load
+window.addEventListener('load', hashHandler);
+
+// Listen for hash changes
+window.addEventListener('hashchange', hashHandler);
+
+
 voipBtn.addEventListener('click', toggleVoip);
 
 function toggleVoip() {
