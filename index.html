@@ -150,6 +150,7 @@ let connections = [];
 
 peer.on('open', (id) => {
     console.log('Your peer ID is: ' + id);
+hashHandler();
 });
 
 peer.on('connection', (conn) => {
