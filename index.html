@@ -6,9 +6,6 @@
     <title>MEET</title>
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
         body, html {
             margin: 0;
             padding: 0;
@@ -56,7 +53,7 @@
             opacity: 1;
         }
         #chat-messages {
-            height: 100px;
+            height: 72px;
             overflow-y: auto;
         }
         #chat-messages::-webkit-scrollbar {
@@ -71,6 +68,9 @@
             width: calc(100% - 140px);
             background-color: rgba(255, 255, 255, 0.2);
             user-select: none;
+            border-radius: 11px;
+            padding-left: 10px;
+            margin-top:11px;
         }
         #voip-btn {
             color: rgba(255, 255, 255, 0.3);
