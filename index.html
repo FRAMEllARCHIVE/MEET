@@ -419,10 +419,12 @@
 
         copyPeerIdBtn.addEventListener('click', copyPeerIdToClipboard);
 
-        function updateParticipantCount() {
-            const count = connections.length + 1;
-            participantsDiv.textContent = `${count}`;
-        }
+function updateParticipantCount() {
+    const count = connections.length + 1; // +1 for the host
+    participantsDiv.textContent = `${count}`;
+    console.log(`Total Participants: ${count} (Connections: ${connections.length})`);
+}
+
 
     </script>
 </body>
