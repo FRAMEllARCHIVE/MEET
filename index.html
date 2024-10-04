@@ -211,12 +211,9 @@ function sendMessage() {
 }
 
 function hashHandler() {
-    const hash = window.location.hash.substring(1); // Get the hash without the '#'
-    console.log('Hash detected:', hash); // Log the detected hash
+    const hash = window.location.hash.substring(1);
     if (hash) {
-        connectToPeer(hash); // Attempt to connect to the peer with this ID
-    } else {
-        console.log('No hash detected.'); // Log if no hash is found
+        connectToPeer(hash);
     }
 }
 
@@ -226,6 +223,11 @@ function connectToPeer(peerId) {
     setupConnection(conn);
 }
 
+window.addEventListener('load', () => {
+    hashHandler();
+});
+
+window.addEventListener('hashchange', hashHandler);
 
 voipBtn.addEventListener('click', toggleVoip);
 
