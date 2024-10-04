@@ -64,8 +64,9 @@
 <canvas id="canvas"></canvas>
 <div id="controls">
     <input type="color" id="color-picker" value="#ffffff">
-    <button id="clear-btn">Clear</button>
-    <button id="voip-btn">Start VoIP</button>
+    <button id="clear-btn">X</button>
+    <button id="voip-btn">VOIP</button>
+    <button id="copy-peer-id-btn">&#x1F517;</button>
 </div>
 <div id="chat-area">
     <div id="chat-messages"></div>
@@ -207,10 +208,6 @@ function connectToPeer(peerId) {
     const conn = peer.connect(peerId);
     connections.push(conn);
     setupConnection(conn);
-
-    const chatMessage = 'entered the chat';
-    addChatMessage(peerId, chatMessage);
-    broadcast({ type: 'chat', message: `${peerId} ${chatMessage}` });
 }
 
 
@@ -259,6 +256,25 @@ function setupVoipCall(call) {
         audio.play();
     });
 }
+
+const copyPeerIdBtn = document.getElementById('copy-peer-id-btn');
+
+function copyPeerIdToClipboard() {
+    const peerId = peer.id;
+    const urlToCopy = `https://framellarchive.github.io/MEET/#${peerId}`;
+
+    navigator.clipboard.writeText(urlToCopy).then(() => {
+        console.log('Peer ID copied to clipboard:', urlToCopy);
+
+        addChatMessage('System', 'Peer ID copied to clipboard!');
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
+copyPeerIdBtn.addEventListener('click', copyPeerIdToClipboard);
+
+
 </script>
 </body>
 </html>
