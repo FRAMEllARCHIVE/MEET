@@ -229,7 +229,6 @@ function startVoip() {
         .then((stream) => {
             localStream = stream;
             isVoipActive = true;
-            voipBtn.textContent = '&#128266;';
             voipBtn.classList.add('active');
             connections.forEach(conn => {
                 const call = peer.call(conn.peer, stream);
@@ -245,7 +244,6 @@ function stopVoip() {
         localStream = null;
     }
     isVoipActive = false;
-    voipBtn.textContent = 'Start VoIP';
     voipBtn.classList.remove('active');
 }
 
