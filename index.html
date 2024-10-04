@@ -53,10 +53,10 @@
         background-color: rgba(255, 255, 255, 0.1);
     }
     #voip-btn {
-        background-color: rgba(0, 255, 0, 0.2);
+color: rgba(255, 255, 255, 0.3);
     }
     #voip-btn.active {
-        background-color: rgba(255, 0, 0, 0.2);
+color: rgba(255, 255, 255, 1);
     }
 </style>
 </head>
@@ -211,8 +211,7 @@ function connectToPeer(peerId) {
 }
 
 
-window.addEventListener('load', () => {
-    hashHandler();
+window.addEventListener('load', hashHandler);
 window.addEventListener('hashchange', hashHandler);
 
 voipBtn.addEventListener('click', toggleVoip);
