@@ -233,7 +233,8 @@ function connectToPeer(peerId) {
         console.error('Connection error:', err); // Log any connection errors
     });
 
-    set
+    setupConnection(conn); // Make sure to handle incoming data, etc.
+}
 
 
 
