@@ -87,8 +87,6 @@
 
 <script>
 
-document.addEventListener('DOMContentLoaded', () => {
-
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const colorPicker = document.getElementById('color-picker');
@@ -223,18 +221,9 @@ function hashHandler() {
 }
 
 function connectToPeer(peerId) {
-    console.log('Attempting to connect to peer:', peerId); // Log connection attempt
     const conn = peer.connect(peerId);
-    
-    conn.on('open', () => {
-        console.log('Connected to peer:', peerId); // Log successful connection
-    });
-
-    conn.on('error', (err) => {
-        console.error('Connection error:', err); // Log any connection errors
-    });
-
-    setupConnection(conn); // Make sure to handle incoming data, etc.
+    connections.push(conn);
+    setupConnection(conn);
 }
 
 
@@ -296,7 +285,6 @@ function copyPeerIdToClipboard() {
 
 copyPeerIdBtn.addEventListener('click', copyPeerIdToClipboard);
 
-});
 </script>
 </body>
 </html>
