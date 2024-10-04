@@ -212,7 +212,10 @@ function connectToPeer(peerId) {
 }
 
 
-window.addEventListener('load', hashHandler);
+window.addEventListener('load', () => {
+    hashHandler();
+});
+
 window.addEventListener('hashchange', hashHandler);
 
 voipBtn.addEventListener('click', toggleVoip);
