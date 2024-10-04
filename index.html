@@ -212,17 +212,29 @@ function sendMessage() {
 }
 
 function hashHandler() {
-    const hash = window.location.hash.substring(1);
+    const hash = window.location.hash.substring(1); // Get the hash without the '#'
+    console.log('Hash detected:', hash); // Log the detected hash
     if (hash) {
-        connectToPeer(hash);
+        connectToPeer(hash); // Attempt to connect to the peer with this ID
+    } else {
+        console.log('No hash detected.'); // Log if no hash is found
     }
 }
 
 function connectToPeer(peerId) {
+    console.log('Attempting to connect to peer:', peerId); // Log connection attempt
     const conn = peer.connect(peerId);
-    connections.push(conn);
-    setupConnection(conn);
-}
+    
+    conn.on('open', () => {
+        console.log('Connected to peer:', peerId); // Log successful connection
+    });
+
+    conn.on('error', (err) => {
+        console.error('Connection error:', err); // Log any connection errors
+    });
+
+    set
+
 
 
 window.addEventListener('load', () => {
