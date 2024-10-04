@@ -117,7 +117,7 @@
     <canvas id="canvas"></canvas>
     <div id="controls">
         <input type="color" id="color-picker" value="#ffffff">
-        <input type="range" id="brush-size" min="1" max="20" value="2">
+        <input type="range" id="brush-size" min="1" max="66" value="2">
         <button id="clear-btn">x</button>
         <button id="undo-btn">undo</button>
         <button id="voip-btn">&#128266;</button>
@@ -128,7 +128,6 @@
         <input type="text" id="message-input" placeholder="Type a message...">
         <button id="send-btn">Send</button>
     </div>
-    <div id="participants">0</div>
 
     <script>
         const canvas = document.getElementById('canvas');
@@ -141,7 +140,6 @@
         const messageInput = document.getElementById('message-input');
         const sendBtn = document.getElementById('send-btn');
         const voipBtn = document.getElementById('voip-btn');
-        const participantsDiv = document.getElementById('participants');
 
         let isDrawing = false;
         let path = [];
@@ -268,7 +266,6 @@
         peer.on('connection', (conn) => {
             connections.push(conn);
             setupConnection(conn);
-            updateParticipantCount();
         });
 
         peer.on('call', (call) => {
@@ -298,7 +295,6 @@
 
             conn.on('close', () => {
                 connections = connections.filter(c => c !== conn);
-                updateParticipantCount();
             });
         }
 
@@ -353,7 +349,6 @@
             const conn = peer.connect(peerId);
             connections.push(conn);
             setupConnection(conn);
-            updateParticipantCount();
         }
 
         window.addEventListener('load', () => {
@@ -418,13 +413,6 @@
         }
 
         copyPeerIdBtn.addEventListener('click', copyPeerIdToClipboard);
-
-function updateParticipantCount() {
-    const count = connections.length + 1; // +1 for the host
-    participantsDiv.textContent = `${count}`;
-    console.log(`Total Participants: ${count} (Connections: ${connections.length})`);
-}
-
 
     </script>
 </body>
