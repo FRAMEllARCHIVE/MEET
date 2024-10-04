@@ -223,6 +223,7 @@
                     lineWidth: brushSize.value
                 });
                 broadcast({ type: 'drawPath', path: path, color: colorPicker.value, lineWidth: brushSize.value });
+                redrawCanvas();
             }
         }
 
